@@ -21,7 +21,7 @@ import java.util.Date;
 
 public class SearchActivity extends AppCompatActivity /*implements LoaderManager.LoaderCallbacks<List<Earthquake>>*/ {
     private EditText startDate, endDate;
-    private static final String apiURL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time";
+    private static final String apiURL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&limit=1000";
     private int mYear, mMonth, mDate;
     private static String mURL;
     Spinner spinner;

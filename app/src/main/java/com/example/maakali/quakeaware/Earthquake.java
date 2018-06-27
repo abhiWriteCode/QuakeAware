@@ -55,9 +55,9 @@ public class Earthquake {
 
     private void setLocations(String location) {
         String ld=null, el=null; // ld = locationDirection , el = exactLocation
-        if(location.contains("of")){
-            String[] strs = location.split("of ");
-            ld = strs[0] + "of";
+        if(location.contains(" of ")){
+            String[] strs = location.split(" of ");
+            ld = strs[0] + " of ";
             el = strs[1];
         }
         else{

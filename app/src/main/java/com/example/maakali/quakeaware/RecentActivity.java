@@ -15,7 +15,7 @@ import java.util.List;
 
 public class RecentActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Earthquake>> {
     private ArrayAdapter<Earthquake> mAdpter;
-    private static final String URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&limit=30";
+    private static final String URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&limit=35";
     FrameLayout frameLayout;
 
     @Override
