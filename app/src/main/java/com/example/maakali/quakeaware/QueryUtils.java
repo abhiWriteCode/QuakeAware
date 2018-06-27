@@ -102,7 +102,7 @@ public final class QueryUtils {
     private static ArrayList<Earthquake> extractEarthquakeFromRawJson(String rawJson) {
         ArrayList<Earthquake> earthQuakes = new ArrayList<>();
         double mag;
-        String place;
+        String place, previousPlace="";
         long time;
         String url;
 
@@ -127,9 +127,11 @@ public final class QueryUtils {
                 place = propertiesObj.getString("place");
                 time = propertiesObj.getLong("time");
                 url = propertiesObj.getString("url");
-                //Log.i(QueryUtils.class.getSimpleName(), mag+" "+place+" "+time);
-                if(mag >= 0)
-                    earthQuakes.add(new Earthquake(mag,place,time,url));
+
+                if(isSameAreaOrLocation(place, previousPlace, i) && (mag >= 0)) {
+                    earthQuakes.add(new Earthquake(mag, place, time, url));
+                    previousPlace = place;
+                }
             }
         }
         catch (JSONException e) {
@@ -140,6 +142,22 @@ public final class QueryUtils {
         }
 
         return earthQuakes;
+    }
+
+    private static boolean isSameAreaOrLocation(String place, String previousPlace, int i) {
+        if(TextUtils.isEmpty(place) || TextUtils.isEmpty(previousPlace))
+            return true;
+
+        if(place.contains(" of ") && previousPlace.contains(" of ")) {
+            String[] arr1 = place.split(" of ");
+            String[] arr2 = previousPlace.split(" of ");
+
+            Log.i("place : " + i + " ==>> ", arr1[1]);
+            Log.i("previous place : ", arr2[1]);
+
+            return !arr1[1].equals(arr2[1]);
+        }
+        return false;
     }
 
 }
